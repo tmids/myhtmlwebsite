@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	 <title>tmids official - tic tac toe</title>
+	 <link rel="icon" href="img/icon.png">
+	 <link rel="stylesheet" href="style.css">
+	 <style>
+		body {
+			 background-image: url('');
+		}
+	 </style>
+  </head>
+  <!--tic tac toe is cool, but how funny would it be if i left all of this code only for it just not fucking work? -->
+  <body onload="setSizes()">
+	 <button onclick="squarePressed(1)" id=1>_</button>
+	 <button onclick="squarePressed(2)" id=2>_</button>
+	 <button onclick="squarePressed(3)" id=3>_</button>
+	 <br>
+	 <button onclick="squarePressed(4)" id=4>_</button>
+	 <button onclick="squarePressed(5)" id=5>_</button>
+	 <button onclick="squarePressed(6)" id=6>_</button>
+	 <br>
+	 <button onclick="squarePressed(7)" id=7>_</button>
+	 <button onclick="squarePressed(8)" id=8>_</button>
+	 <button onclick="squarePressed(9)" id=9>_</button>
+	 
+	 <script>
+
+		window.addEventListener('resize', function () {
+			 setSizes()
+		})
+
+		function restart() {
+			 let element
+			 for (let i = 1; i <=9; i++) {
+				  element = document.getElementById(i)
+				  element.innerHTML = "_"
+				  element.style["color"] = "inherit"
+			 }
+		}
+		
+		function setSizes() {
+			 let buttonWidth = Math.floor(window.innerWidth/3*0.9)
+			 let buttonHeight = Math.floor(window.innerHeight/3*0.9)
+			 let fontSize = Math.min(buttonWidth, buttonHeight)*0.5
+			 let element
+			 let newStyle
+			 for (let i = 1; i<=9; i++) {
+				  element = window.document.getElementById(i)
+				  element.style["width"]  = String(buttonWidth)+"px"
+				  element.style["height"] = String(buttonHeight)+"px"
+				  element.style["font-size"] = String(fontSize)+"px"
+			 }
+		}
+
+		function squarePressed(squareID) {
+			 let square = document.getElementById(squareID)
+			 if (square.innerHTML===HUMAN_PLAYER || square.innerHTML===AI_PLAYER) {return}
+			 // because when ai makes a move it doesn't trigger this function
+			 square.innerHTML = HUMAN_PLAYER
+			 square.style["color"] = "red"
+
+			 let isGameOver = isWinningMove(HUMAN_PLAYER) || isWinningMove(AI_PLAYER) || isBoardFull()
+
+			 if (window.parent===window) {return}
+			 
+			 if (!isGameOver) {/*makeAIMove()*/}
+			 else {
+				  if (isWinningMove(HUMAN_PLAYER)) {
+						window.parentgameOver(HUMAN_PLAYER)
+				  }
+				  else if (isWinningMove(AI_PLAYER)) {
+						window.parent.gameOver(AI_PLAYER)
+				  }
+				  else {
+						window.parent.gameOver(EMPTY)
+				  }
+			 }
+		}
+			 
+	 </script>
+	 <script>
+		
+		const AI_PLAYER = "O"
+		const HUMAN_PLAYER = "X"
+		const EMPTY = "_"
+		let turn = HUMAN_PLAYER
+		
+		function getSquareNumber(x, y) {
+			 return (y-1)*3+x
+		}
+	 </script>
+	 <script>
+		// https://github.com/brock810/JavaScript-Tic-Tac-Toe-Game-with-AI
+		// Minimax algorithm implementation
+		// Function to make the AI move using the Minimax algorithm
+		function makeAIMove() {
+			 const bestMove = minimax(AI_PLAYER).move;
+			 document.getElementById(getSquareData(bestMove.row, bestMove.col)).innerHTML = AI_PLAYER;
+		}
+
+		function isBoardFull() {
+			 let isFull = true
+			 for (let i = 1; i<=9; i++) {
+				  isFull = isFull && document.getElementById(i).innerHTML!=EMPTY
+				  if (!isFull) {break}
+			 }
+			 return isFull
+		}
+
+		function getPossibleMoves() {
+			 let possibleMoves = []
+			 let square
+			 for (let i = 1; i<=9; i++) {
+				  square = document.getElementById(i).innerHTML
+				  if (square===EMPTY) {
+						possibleMoves.push(square)
+				  }
+			 }
+			 return possibleMoves
+		}
+
+		function minimax(currentPlayer) {
+			 if (isWinningMove(HUMAN_PLAYER)) {
+				  return { score: -10 }; // Human wins, so AI gets a negative score
+			 } else if (isWinningMove(AI_PLAYER)) {
+				  return { score: 10 }; // AI wins, so AI gets a positive score
+			 } else if (isBoardFull()) {
+				  return { score: -1 }; // Draw, AI gets a little negative score
+			 }
+
+			 const possibleMoves = getPossibleMoves();
+
+			 if (currentPlayer === AI_PLAYER) {
+				  let bestScore = -Infinity;
+				  let bestMove = null;
+
+				  for (let move of possibleMoves) {
+						document.getElementById(move).innerHTML = AI_PLAYER;
+						const score = minimax(board, HUMAN_PLAYER).score;
+						document.getElementById(move).innerHTML = EMPTY;
+
+						if (score > bestScore) {
+							 bestScore = score;
+							 bestMove = move;
+						}
+				  }
+
+				  return { score: bestScore, move: bestMove };
+			 } else {
+				  let bestScore = Infinity;
+				  let bestMove = null;
+
+				  for (let move of possibleMoves) {
+						document.getElementById(move).innerHTML = HUMAN_PLAYER;
+						const score = minimax(board, AI_PLAYER).score;
+						document.getElementById(move).innerHTML = EMPTY;
+
+						if (score < bestScore) {
+							 bestScore = score;
+							 bestMove = move;
+						}
+				  }
+
+				  return { score: bestScore, move: bestMove };
+			 }
+		}
+		
+	 </script>
+	 <script>
+
+		// Function to check if a player has won the game
+		function isWinningMove(player) {
+			 let isWinning
+			 // Check rows, columns, and diagonals for a win
+			 for (let i = 1; i <= 3; i++) {
+				  for (let i = 1; i <= 3; i++) {
+						isWinning = isWinning && document.getElementById(getSquareNumber(i, 0)).innerHTML === player
+				  }
+				  if (isWinning) {return true} // Check rows
+				  
+				  for (let i = 1; i <= 3; i++) {
+						isWinning = isWinning && document.getElementById(getSquareNumber(0, i)).innerHTML === player
+				  }
+				  if (isWinning) {return true}
+			 }
+			 for (let i = 1; i <=3; i++) {
+				  isWinning = isWinning && document.getElementById(getSquareNumber(i, i)).innerHTML === player
+			 }
+			 if (isWinning) {return true}
+			 
+			 for (let i = 1; i <=3; i++) {
+				  isWinning = isWinning && document.getElementById(getSquareNumber(4-i, i)).innerHTML === player
+			 }
+			 
+			 return isWinning;
+		}
+	 </script>
+  </body>
+</html>

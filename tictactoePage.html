@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	 <link rel="stylesheet" href="style.css">
+	 <link rel="icon" href="img/icon.png">
+	 <style>
+	 html, body {
+	 }
+	 </style>
+  </head>
+  <body>
+	 <a href="page.html"><button style="margin-bottom:10px;">&lt; Main page</button></a>
+	 <h1 style="display:inline-block;">PLAY TIC TAC TOE WITH AI</h1>
+	 <br>
+	 <iframe id="tictactoeFrame" src="page/tictactoe.html" style="margin-left:5%;aspect-ratio:1/1;width:50%"></iframe>
+	 <p style="display:inline-block;position:absolute;margin-left:100px">You play as X, good luck!<button onclick="document.getElementById('tictactoeFrame').contentWindow.restart()">Restart</button></p>
+	 
+	 <p id="winner" style="display:inline-block;position:absolute;margin-left:100px;margin-top:100px;"></p>
+	 
+	 <iframe src="https://en.wikipedia.org/wiki/Tic-tac-toe" style="aspect-ratio:1.5/1;width:40%"></iframe>
+	 
+	 <p style="font-size:50%">I stole the AI code from this github page: <a href="https://github.com/brock810/JavaScript-Tic-Tac-Toe-Game-with-AI">https://github.com/brock810/JavaScript-Tic-Tac-Toe-Game-with-AI</a>. Hope i won't go to jail!<p>
+		<script>
+		  function gameOver(player) {
+				let winnerElement = document.getElementById("winner")
+				if (player==="_") {
+					 winnerElement.innerHTML = "Wow, it's a tie! Looks like you're just as bad as the AI!"
+				}
+				else if (player==="X") {
+					 winnerElement.innerHTML = "Hurray! You won!"
+				}
+				else if (player==="O") {
+					 winnerElement.innerHTML = "Hurray! You lost! Looks like someone didn't use the luck i wished for you!"
+				}
+				else {
+					 winnerElement.innerHTML = "wtf"
+				}
+				winnerElement.innerHTML = "<br><br>" + winnerElement.innerHTML
+		  }
+		</script>
+  </body>
+</html>

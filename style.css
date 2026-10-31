@@ -1,0 +1,38 @@
+body {
+	 width:100%;
+	 height:100%;
+	 margin:0px;
+	 offset:0px;
+	 td, th {
+		  border: 2px solid #0007;
+	 }
+	 tr {
+		  background-color:#ff9;
+		  color:#f5c;
+	 }
+	 font-family: "Sans Serif";
+	 font-size: 25px;
+	 color: purple;
+	 background-image: url("img/fluttershy.png");
+	 background-size:100%100%;
+	 background-repeat: no-repeat;
+	 button {
+		  color:purple;
+		  font-size:25px;
+	 }
+}
+.hiddenlink {
+	 color: inherit;
+	 font-weight: 400;
+	 text-decoration: none;
+}
+.block {
+	 width:44px;
+	 height:44px;
+	 background-image:url("img/plank.jpg");
+	 background-size:100%100%;
+}
+.divider {
+	 background-image:url('img/icon.png');
+	 background-size:100%;
+}
