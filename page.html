@@ -102,6 +102,7 @@ going to do here?
 
 	 <p>Also, here's list of all the mommas i got to make you feel envy</p>
 	 <ol>
+		<li>A momma</li> <button onclick="document.getElementById('lastmomma').scrollIntoView()" style="position:sticky;top:10px;right:10px;color:black;background-color:#f66;aspect-ratio:1/1;width:50%;float:right">Skip the list</button>
 		<li>A momma</li>
 		<li>A momma</li>
 		<li>A momma</li>
@@ -169,8 +170,7 @@ going to do here?
 		<li>A momma</li>
 		<li>A momma</li>
 		<li>A momma</li>
-		<li>A momma</li>
-		<li>A momma</li>
+		<li id="lastmomma">A momma</li>
 	 </ol>
 	 <p><span title=69>69</span> moms in total</p>
 
@@ -274,35 +274,35 @@ going to do here?
 	 </div>
 
 	 <p style:"text:align-center;">And what about this one?</p>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
 	 <br>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
 	 <br>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
 	 <br>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
 	 <br>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
-	 <button class="block" type="submit"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
+	 <button class="block"></button>
 
 	 <br>
 	 
@@ -313,6 +313,8 @@ going to do here?
 	 <p>Okay, i guess thats the end of this page. Check out the other ones!</p>
 
 	 <a style="float:left" href="tictactoePage.html">Tic Tac Toe</a>
+
+	 <a style="">
 	 
 	 <button title="Go again!" onclick="goAgain()" style="float:right;width:50px;height:70px">/\<br>|</button>
 
@@ -321,9 +323,15 @@ going to do here?
 	 <script>
 		function goAgain() {
 			 let element = document.getElementById("goagain")
+			 let framesrc
+			 if (window.parent===window) {
+				  framesrc = "pagecopy.html"
+			 } else {
+				  framesrc = "page/norecurs.html"
+			 }
 			 if (element.getAttribute("src")==="") {
 				  let element = document.getElementById("goagain")
-				  element.setAttribute("src", "page/pagecopy.html")
+				  element.setAttribute("src", framesrc)
 				  element.setAttribute("width", "100%")
 				  element.setAttribute("height", "500px")
 			 } else {
@@ -353,7 +361,7 @@ going to do here?
 			 }
 		}
 		function openPopup(message, style) {
-			 let newWindow = window.open("popup.html", "_blank", "titlebar:0;width:250;height:250");
+			 let newWindow = window.open("popup.html", "_blank", "width:250px;height:250px;");
 			 newWindow.addEventListener('load', function() {
 				  let element = newWindow.document.getElementById("popupText")
 				  element.innerHTML = message;
