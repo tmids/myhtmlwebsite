@@ -102,7 +102,7 @@ going to do here?
 
 	 <p>Also, here's list of all the mommas i got to make you feel envy</p>
 	 <ol>
-		<li>A momma</li> <button onclick="document.getElementById('lastmomma').scrollIntoView()" style="position:sticky;top:10px;right:10px;color:black;background-color:#f66;aspect-ratio:1/1;width:25%;float:right">Skip the list</button>
+		<li>A momma</li> <button onclick="document.getElementById('lastmomma').scrollIntoView()" style="position:sticky;top:10px;right:10px;color:black;background-color:#f66;aspect-ratio:1/1;width:50%;float:right">Skip the list</button>
 		<li>A momma</li>
 		<li>A momma</li>
 		<li>A momma</li>
@@ -312,30 +312,34 @@ going to do here?
 	 
 	 <p>Okay, i guess thats the end of this page. Check out the other ones!</p>
 
-	 <a style="float:left" href="tictactoePage.html">Tic Tac Toe</a>
-	 
-	 <button title="Go again!" onclick="goAgain()" style="float:right;width:50px;height:70px">/\<br>|</button>
+	 <a style="margin-left:50px;" href="tictactoePage.html">Tic Tac Toe</a>
 
-	 <iframe id="goagain" width=0% height=0px src=""></iframe>
+	 <br><p>In case you want to contact me:</p>
+
+	 <a style="margin-left:50px;" href="mailto:bojcybliznecy94@gmail.com">My Email</a>
+	 
+	 <a style="margin-left:50px;" href="mailto:tmid45@gmail.com">My Email</a>
+	 
+	 <a style="margin-left:50px;" href="https://t.me/tmids2">My Telegram profile</a>
+
+	 <button title="Go again!" onclick="goAgain()" style="position:relative;float:right;right:10px;bottom:10px;width:50px;height:70px">/\<br>|</button>
+
+	 <iframe id="goagain" style="display:none" width=100% height=500px src=""></iframe>
 	 
 	 <script>
 		function goAgain() {
 			 let element = document.getElementById("goagain")
 			 let framesrc
 			 if (window.parent===window) {
-				  framesrc = "page.html"
+				  framesrc = "pagecopy.html"
 			 } else {
 				  framesrc = "page/norecurs.html"
 			 }
-			 if (element.getAttribute("src")==="") {
-				  let element = document.getElementById("goagain")
-				  element.setAttribute("src", framesrc)
-				  element.setAttribute("width", "100%")
-				  element.setAttribute("height", "500px")
+			 element.setAttribute("src", framesrc)
+			 if (element.style["display"]==="none") {
+				  element.style["display"]="inline-block"
 			 } else {
-				  element.setAttribute("src", "")
-				  element.setAttribute("width", "0%")
-				  element.setAttribute("height", "0px")
+				  element.style["display"]="none"
 			 }
 		}
 		

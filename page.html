@@ -312,13 +312,19 @@ going to do here?
 	 
 	 <p>Okay, i guess thats the end of this page. Check out the other ones!</p>
 
-	 <a style="float:left" href="tictactoePage.html">Tic Tac Toe</a>
+	 <a style="margin-left:50px;" href="tictactoePage.html">Tic Tac Toe</a>
 
-	 <a style="">
+	 <br><p>In case you want to contact me:</p>
+
+	 <a style="margin-left:50px;" href="mailto:bojcybliznecy94@gmail.com">My Email</a>
 	 
-	 <button title="Go again!" onclick="goAgain()" style="float:right;width:50px;height:70px">/\<br>|</button>
+	 <a style="margin-left:50px;" href="mailto:tmid45@gmail.com">My Email</a>
+	 
+	 <a style="margin-left:50px;" href="https://t.me/tmids2">My Telegram profile</a>
 
-	 <iframe id="goagain" width=0% height=0px src=""></iframe>
+	 <button title="Go again!" onclick="goAgain()" style="position:relative;float:right;right:10px;bottom:10px;width:50px;height:70px">/\<br>|</button>
+
+	 <iframe id="goagain" style="display:none" width=100% height=500px src=""></iframe>
 	 
 	 <script>
 		function goAgain() {
@@ -329,15 +335,11 @@ going to do here?
 			 } else {
 				  framesrc = "page/norecurs.html"
 			 }
-			 if (element.getAttribute("src")==="") {
-				  let element = document.getElementById("goagain")
-				  element.setAttribute("src", framesrc)
-				  element.setAttribute("width", "100%")
-				  element.setAttribute("height", "500px")
+			 element.setAttribute("src", framesrc)
+			 if (element.style["display"]==="none") {
+				  element.style["display"]="inline-block"
 			 } else {
-				  element.setAttribute("src", "")
-				  element.setAttribute("width", "0%")
-				  element.setAttribute("height", "0px")
+				  element.style["display"]="none"
 			 }
 		}
 		

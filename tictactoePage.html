@@ -13,7 +13,8 @@
 	 <h1 style="display:inline-block;">PLAY TIC TAC TOE WITH AI</h1>
 	 <br>
 	 <iframe id="tictactoeFrame" src="page/tictactoe.html" style="margin-left:5%;aspect-ratio:1/1;width:50%"></iframe>
-	 <p style="display:inline-block;position:absolute;margin-left:100px">You play as X, good luck!<button onclick="document.getElementById('tictactoeFrame').contentWindow.restart()">Restart</button></p>
+	 <p style="display:inline-block;position:absolute;margin-left:100px">You play as X, good luck!
+	 <button style="display:none;" id="restart" onclick="document.getElementById('tictactoeFrame').contentWindow.restart();restart()">Restart</button></p>
 	 
 	 <p id="winner" style="display:inline-block;position:absolute;margin-left:100px;margin-top:100px;"></p>
 	 
@@ -21,6 +22,10 @@
 	 
 	 <p style="font-size:50%">I stole the AI code from this github page: <a href="https://github.com/brock810/JavaScript-Tic-Tac-Toe-Game-with-AI">https://github.com/brock810/JavaScript-Tic-Tac-Toe-Game-with-AI</a>. Hope i won't go to jail!<p>
 		<script>
+		  function restart() {
+				document.getElementById("restart").style["display"] = "none"
+		  }
+		  
 		  function gameOver(player) {
 				let winnerElement = document.getElementById("winner")
 				if (player==="_") {
@@ -36,6 +41,7 @@
 					 winnerElement.innerHTML = "wtf"
 				}
 				winnerElement.innerHTML = "<br><br>" + winnerElement.innerHTML
+				document.getElementById("restart").style["display"] = "inline-block"
 		  }
 		</script>
   </body>
